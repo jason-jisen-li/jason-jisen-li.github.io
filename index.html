@@ -3,381 +3,450 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jason Li — Computer Science @ UW-Madison</title>
-  <meta name="description" content="Jason Li — Computer Science student at UW-Madison. Research and software engineering in machine learning, computer vision, and robotics.">
+  <title>Jason Li — Computer Science, UW–Madison</title>
+  <meta name="description" content="Jason Li — Computer Science student at UW–Madison. Research and software engineering across machine learning, computer vision, and robotics.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500..800;1,400..600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0d1117;
-      --bg-elev: #161b22;
-      --border: #21262d;
-      --text: #e6edf3;
-      --text-dim: #8b949e;
-      --accent: #58a6ff;
-      --accent-soft: rgba(88, 166, 255, 0.12);
-      --tag-bg: #1f2630;
-      --radius: 12px;
-      --max: 820px;
-    }
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #f6f8fa;
-        --bg-elev: #ffffff;
-        --border: #d0d7de;
-        --text: #1f2328;
-        --text-dim: #59636e;
-        --accent: #0969da;
-        --accent-soft: rgba(9, 105, 218, 0.08);
-        --tag-bg: #eaeef2;
-      }
+      --paper:    #f1ece1;
+      --paper-2:  #ece5d7;
+      --ink:      #1d1a15;
+      --ink-soft: #4a443b;
+      --ink-dim:  #877d6e;
+      --line:     #cdc4b2;
+      --accent:   #9c3327;
+      --display: "Playfair Display", Georgia, "Times New Roman", serif;
+      --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+      --sans:  "Instrument Sans", -apple-system, system-ui, sans-serif;
+      --mono:  "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: var(--sans);
+      background-color: var(--paper);
+      color: var(--ink);
       line-height: 1.6;
+      font-size: 17px;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    /* grain atmosphere — keeps the paper from reading as a flat fill */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      pointer-events: none;
+      opacity: 0.045;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 360 360' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
 
-    .wrap {
-      max-width: var(--max);
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: 980px;
       margin: 0 auto;
-      padding: 0 24px 96px;
+      padding: 0 28px 120px;
     }
 
-    /* ---------- Header ---------- */
-    header {
-      padding: 72px 0 40px;
-      border-bottom: 1px solid var(--border);
+    /* ───────────────────────── Masthead ───────────────────────── */
+    .masthead {
+      padding: 96px 0 56px;
+      max-width: 760px;
+    }
+    .kicker {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 26px;
     }
     h1 {
-      font-size: clamp(2.2rem, 6vw, 3.2rem);
-      font-weight: 800;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(3.4rem, 13vw, 7rem);
+      line-height: 0.94;
       letter-spacing: -0.02em;
-      line-height: 1.1;
+      color: var(--ink);
     }
-    .tagline {
-      margin-top: 10px;
-      font-size: 1.15rem;
-      color: var(--text-dim);
+    .lede {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+      line-height: 1.4;
+      color: var(--ink-soft);
+      margin-top: 28px;
+      max-width: 30ch;
     }
     .contact {
-      margin-top: 22px;
+      list-style: none;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px 18px;
-      font-size: 0.95rem;
+      gap: 10px 28px;
+      margin-top: 38px;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--ink-dim);
     }
-    .contact a, .contact span {
-      color: var(--text-dim);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .contact a:hover { color: var(--accent); }
-
-    .actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      border-radius: var(--radius);
-      font-weight: 600;
-      font-size: 0.95rem;
-      border: 1px solid var(--border);
-      transition: transform .12s ease, border-color .12s ease, background .12s ease;
-    }
-    .btn:hover { text-decoration: none; transform: translateY(-1px); }
-    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .btn-primary:hover { filter: brightness(1.08); }
-    .btn-ghost:hover { border-color: var(--accent); background: var(--accent-soft); }
-
-    /* ---------- Sections ---------- */
-    section { padding-top: 48px; }
-    h2 {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      font-weight: 700;
-      margin-bottom: 24px;
-    }
-
-    .card {
-      background: var(--bg-elev);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px 24px;
-      margin-bottom: 16px;
-    }
-
-    .row-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 4px 16px;
-    }
-    .row-top h3 { font-size: 1.1rem; font-weight: 700; }
-    .meta { color: var(--text-dim); font-size: 0.9rem; white-space: nowrap; }
-    .subtitle { color: var(--text-dim); font-style: italic; margin-bottom: 12px; font-size: 0.95rem; }
-
-    ul.bullets { list-style: none; margin-top: 4px; }
-    ul.bullets li {
-      position: relative;
-      padding-left: 20px;
-      margin-bottom: 8px;
-      color: var(--text);
-    }
-    ul.bullets li::before {
+    .contact a { position: relative; color: var(--ink-soft); }
+    .contact a::after {
       content: "";
       position: absolute;
-      left: 4px; top: 11px;
-      width: 5px; height: 5px;
-      border-radius: 50%;
+      left: 0; bottom: -3px;
+      width: 100%; height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .contact a:hover { color: var(--accent); }
+    .contact a:hover::after { transform: scaleX(1); }
+
+    /* ───────────────────────── Blocks ───────────────────────── */
+    .block {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 16px 44px;
+      padding: 52px 0;
+      border-top: 1px solid var(--line);
+    }
+    .block-label {
+      position: sticky;
+      top: 36px;
+      align-self: start;
+      height: max-content;
+    }
+    .block-label .num {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .block-label h2 {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* ───────────────────────── Entries ───────────────────────── */
+    .entry { padding: 0 0 4px; }
+    .entry + .entry {
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--line);
+    }
+    .entry-date {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      color: var(--ink-dim);
+      margin-bottom: 12px;
+    }
+    /* the role/title is the loudest thing in each entry */
+    .entry-title {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: clamp(1.7rem, 3.6vw, 2.35rem);
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+    }
+    .entry-org {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--accent);
+      margin-top: 8px;
+    }
+    .entry-org .sep { color: var(--ink-dim); font-weight: 400; }
+    .entry-note { color: var(--ink-dim); font-weight: 400; }
+
+    .bullets { list-style: none; margin-top: 18px; }
+    .bullets li {
+      position: relative;
+      padding-left: 26px;
+      margin-bottom: 11px;
+      color: var(--ink-soft);
+      max-width: 64ch;
+    }
+    .bullets li::before {
+      content: "";
+      position: absolute;
+      left: 2px; top: 0.62em;
+      width: 12px; height: 1px;
       background: var(--accent);
     }
+    .lead-line { color: var(--ink); }
 
-    /* ---------- Skills ---------- */
-    .skill-group { margin-bottom: 16px; }
-    .skill-group:last-child { margin-bottom: 0; }
-    .skill-label { font-weight: 600; color: var(--text-dim); font-size: 0.85rem; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag {
-      background: var(--tag-bg);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 4px 13px;
-      font-size: 0.88rem;
-      color: var(--text);
+    .coursework { color: var(--ink-soft); margin-top: 14px; max-width: 64ch; }
+    .coursework b {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      display: block;
+      margin-bottom: 6px;
     }
 
-    .coursework { color: var(--text-dim); font-size: 0.95rem; margin-top: 6px; }
+    /* ───────────────────────── Skills ───────────────────────── */
+    .skill-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+    }
+    .skill-row + .skill-row { border-top: 1px solid var(--line); }
+    .skill-key {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      padding-top: 3px;
+    }
+    .skill-val { color: var(--ink); font-size: 1.02rem; }
+    .skill-val .sep { color: var(--line); margin: 0 4px; }
 
+    /* ───────────────────────── Footer ───────────────────────── */
     footer {
-      margin-top: 64px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-      color: var(--text-dim);
-      font-size: 0.85rem;
-      text-align: center;
+      margin-top: 72px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.04em;
+      color: var(--ink-dim);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
-    /* fade-in */
-    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
+    /* ───────────────────────── Motion ───────────────────────── */
+    .rise { opacity: 0; transform: translateY(16px); }
+    .load .rise { animation: rise 0.7s cubic-bezier(.2,.7,.2,1) forwards; }
+    .masthead .rise:nth-child(1) { animation-delay: .05s; }
+    .masthead .rise:nth-child(2) { animation-delay: .14s; }
+    .masthead .rise:nth-child(3) { animation-delay: .24s; }
+    .masthead .rise:nth-child(4) { animation-delay: .34s; }
+
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.in { opacity: 1; transform: none; }
+
+    @keyframes rise { to { opacity: 1; transform: none; } }
+
     @media (prefers-reduced-motion: reduce) {
-      .reveal { opacity: 1; transform: none; transition: none; }
+      .rise, .reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
       html { scroll-behavior: auto; }
+    }
+
+    /* ───────────────────────── Responsive ───────────────────────── */
+    @media (max-width: 760px) {
+      .page { padding: 0 22px 80px; }
+      .masthead { padding: 64px 0 44px; }
+      .block { grid-template-columns: 1fr; gap: 22px; padding: 40px 0; }
+      .block-label { position: static; }
+      .skill-row { grid-template-columns: 1fr; gap: 6px; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="page">
 
-    <header>
-      <h1>Jason Li</h1>
-      <p class="tagline">Computer Science student at UW-Madison — machine learning, computer vision &amp; robotics.</p>
-
-      <div class="contact">
-        <a href="mailto:jasonjisenli@gmail.com">✉ jasonjisenli@gmail.com</a>
-        <span>📍 Madison, WI</span>
-        <a href="https://github.com/jason-jisen-li" target="_blank" rel="noopener">⌨ GitHub</a>
-      </div>
-
-      <div class="actions">
-        <a class="btn btn-primary" href="Jason%20Li_Resume_AI.pdf" target="_blank" rel="noopener">Download Résumé (PDF)</a>
-        <a class="btn btn-ghost" href="mailto:jasonjisenli@gmail.com">Get in touch</a>
-      </div>
+    <header class="masthead">
+      <p class="kicker rise">Computer Science · UW–Madison</p>
+      <h1 class="rise">Jason Li</h1>
+      <p class="lede rise">Building and reasoning about systems across machine learning, computer vision, robotics, and game theory.</p>
+      <ul class="contact rise">
+        <li><a href="mailto:jasonjisenli@gmail.com">jasonjisenli@gmail.com</a></li>
+        <li>Madison, WI</li>
+        <li><a href="https://github.com/jason-jisen-li" target="_blank" rel="noopener">github.com/jason-jisen-li</a></li>
+      </ul>
     </header>
 
     <main>
-      <!-- EDUCATION -->
-      <section class="reveal">
-        <h2>Education</h2>
-        <div class="card">
-          <div class="row-top">
-            <h3>University of Wisconsin-Madison</h3>
-            <span class="meta">Expected May 2027</span>
-          </div>
-          <p class="subtitle">B.S. in Computer Science · GPA 4.0 / 4.0 · Madison, WI</p>
-          <p class="coursework">
-            <strong>Relevant coursework:</strong> Artificial Intelligence · Learning Theory · Linear Algebra ·
-            Theory of Probability · Linear Optimization · Algorithms · Operating Systems ·
-            Object-Oriented Programming and Data Structures
-          </p>
-        </div>
-      </section>
 
-      <!-- SKILLS -->
-      <section class="reveal">
-        <h2>Skills</h2>
-        <div class="card">
-          <div class="skill-group">
-            <div class="skill-label">Languages</div>
-            <div class="tags">
-              <span class="tag">Java · 4y</span>
-              <span class="tag">Python · 4y</span>
-              <span class="tag">C++ · 5y</span>
-              <span class="tag">C · 5y</span>
-              <span class="tag">C# · 1y</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-label">Systems</div>
-            <div class="tags">
-              <span class="tag">Git</span>
-              <span class="tag">Docker</span>
-              <span class="tag">Linux</span>
-              <span class="tag">Bash</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-label">ML / CV</div>
-            <div class="tags">
-              <span class="tag">PyTorch</span>
-              <span class="tag">OpenCV</span>
-              <span class="tag">YOLO (Ultralytics)</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-label">Simulation</div>
-            <div class="tags">
-              <span class="tag">Gazebo</span>
-              <span class="tag">Unity</span>
-            </div>
-          </div>
+      <!-- EDUCATION -->
+      <section class="block reveal">
+        <div class="block-label"><span class="num">01</span><h2>Education</h2></div>
+        <div class="block-body">
+          <article class="entry">
+            <p class="entry-date">Expected May 2027</p>
+            <h3 class="entry-title">B.S. Computer Science</h3>
+            <p class="entry-org">University of Wisconsin–Madison <span class="sep">·</span> <span class="entry-note">GPA 4.0 / 4.0</span></p>
+            <p class="coursework">
+              <b>Relevant coursework</b>
+              Artificial Intelligence · Learning Theory · Linear Algebra · Theory of Probability ·
+              Introduction to Stochastic Processes · Linear Optimization · Algorithms · Operating Systems ·
+              Software Engineering · Object-Oriented Programming and Data Structures
+            </p>
+          </article>
         </div>
       </section>
 
       <!-- EXPERIENCE -->
-      <section class="reveal">
-        <h2>Experience</h2>
+      <section class="block reveal">
+        <div class="block-label"><span class="num">02</span><h2>Experience</h2></div>
+        <div class="block-body">
 
-        <div class="card">
-          <div class="row-top">
-            <h3>University of Wisconsin-Madison</h3>
-            <span class="meta">Nov 2025 – Jun 2026</span>
-          </div>
-          <p class="subtitle">Research Assistant</p>
-          <ul class="bullets">
-            <li>Characterized the Nash Equilibrium for a multi-player "battling influencers" game.</li>
-            <li>Extended the analysis to the Bayesian (incomplete-information) version of the game and characterized its Bayesian Nash Equilibrium (BNE).</li>
-            <li>Wrote the mathematical proofs and contributed to drafting the paper.</li>
-            <li>Wrote Python programs to compute and visualize game behaviors across different scenarios.</li>
-            <li>This research contributes to a paper to be submitted to GameSec 2026.</li>
-          </ul>
-        </div>
+          <article class="entry">
+            <p class="entry-date">May 2026 – Present</p>
+            <h3 class="entry-title">Software Development Intern</h3>
+            <p class="entry-org">Epic</p>
+            <ul class="bullets">
+              <li>Working on the frontend design and implementation of Hyperspace, Epic's primary application used by healthcare organizations.</li>
+            </ul>
+          </article>
 
-        <div class="card">
-          <div class="row-top">
-            <h3>University of Wisconsin-Madison</h3>
-            <span class="meta">Jan 2026 – May 2026</span>
-          </div>
-          <p class="subtitle">Peer Mentor · CS 540: Introduction to Artificial Intelligence</p>
-          <ul class="bullets">
-            <li>Ran weekly office hour sessions, 5 hours per week, answering students' questions and helping them work through their homework.</li>
-            <li>Taught core AI and machine learning concepts, such as lasso regression.</li>
-          </ul>
-        </div>
+          <article class="entry">
+            <p class="entry-date">Nov 2025 – Jun 2026</p>
+            <h3 class="entry-title">Research Assistant</h3>
+            <p class="entry-org">University of Wisconsin–Madison</p>
+            <ul class="bullets">
+              <li>Characterized the Nash Equilibrium for a multi-player "battling influencers" game.</li>
+              <li>Extended the analysis to the Bayesian (incomplete-information) version of the game and characterized its Bayesian Nash Equilibrium (BNE).</li>
+              <li>Wrote the mathematical proofs and contributed to drafting the paper.</li>
+              <li>Wrote Python programs to compute and visualize game behaviors across different scenarios.</li>
+              <li>This research contributes to a paper to be submitted to GameSec 2026.</li>
+            </ul>
+          </article>
 
-        <div class="card">
-          <div class="row-top">
-            <h3>Bohr Systems</h3>
-            <span class="meta">May 2025 – Aug 2025</span>
-          </div>
-          <p class="subtitle">Software Engineering Intern</p>
-          <ul class="bullets">
-            <li>Designed a camera-only visual localization pipeline in Python for quad-wing UAVs in GPS-denied environments; defined system interfaces and data flows.</li>
-            <li>Compared visual-localization methods on requirements and trade-offs; recommended ORB (adopted).</li>
-            <li>Performed a thorough code-level review of the OpenCV ORB implementation, covering all major algorithmic steps and performance optimizations.</li>
-            <li>Implemented an end-to-end ORB localization prototype: keypoint extraction, descriptor matching, geometric verification (RANSAC), and map-tile search.</li>
-            <li>Built Gazebo simulation experiments; scripted camera streams and test harnesses to evaluate accuracy.</li>
-          </ul>
-        </div>
+          <article class="entry">
+            <p class="entry-date">Jan 2026 – May 2026</p>
+            <h3 class="entry-title">Peer Mentor</h3>
+            <p class="entry-org">CS 540: Introduction to Artificial Intelligence <span class="sep">·</span> <span class="entry-note">UW–Madison</span></p>
+            <ul class="bullets">
+              <li>Ran weekly office hour sessions, 5 hours per week, answering students' questions and helping them work through their homework.</li>
+              <li>Taught core AI and machine learning concepts, such as lasso regression.</li>
+            </ul>
+          </article>
 
-        <div class="card">
-          <div class="row-top">
-            <h3>Beijing Academy of Agriculture and Forestry Sciences</h3>
-            <span class="meta">May 2024 – May 2025</span>
-          </div>
-          <p class="subtitle">Research Assistant</p>
-          <ul class="bullets">
-            <li>Assisted in developing deep learning algorithms for sturgeon re-identification (ReID) in Python &amp; PyTorch.</li>
-            <li>Reviewed fish detection and individual identification (ReID) methods.</li>
-            <li>Acquired, processed, and curated a training and validation dataset of 6,000 high-quality sturgeon images, designing the image-acquisition protocol and labeling guidelines.</li>
-            <li>Fine-tuned and integrated YOLOv8 as the detection module in the pipeline; generated detector-aligned crops for ReID training/inference.</li>
-            <li>Adapted a pose-guided ReID approach to sturgeon.</li>
-          </ul>
+          <article class="entry">
+            <p class="entry-date">May 2025 – Aug 2025</p>
+            <h3 class="entry-title">Software Engineering Intern</h3>
+            <p class="entry-org">Bohr Systems</p>
+            <ul class="bullets">
+              <li>Designed a camera-only visual localization pipeline in Python for quad-wing UAVs in GPS-denied environments; defined system interfaces and data flows.</li>
+              <li>Compared visual-localization methods on requirements and trade-offs; recommended ORB (adopted).</li>
+              <li>Performed a thorough code-level review of the OpenCV ORB implementation, covering all major algorithmic steps and performance optimizations.</li>
+              <li>Implemented an end-to-end ORB localization prototype: keypoint extraction, descriptor matching, geometric verification (RANSAC), and map-tile search.</li>
+              <li>Built Gazebo simulation experiments; scripted camera streams and test harnesses to evaluate accuracy.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <p class="entry-date">May 2024 – May 2025</p>
+            <h3 class="entry-title">Research Assistant</h3>
+            <p class="entry-org">Beijing Academy of Agriculture and Forestry Sciences</p>
+            <ul class="bullets">
+              <li>Assisted in developing deep learning algorithms for sturgeon re-identification (ReID) in Python &amp; PyTorch.</li>
+              <li>Reviewed fish detection and individual identification (ReID) methods.</li>
+              <li>Acquired, processed, and curated a training and validation dataset of 6,000 high-quality sturgeon images, designing the image-acquisition protocol and labeling guidelines.</li>
+              <li>Fine-tuned and integrated YOLOv8 as the detection module in the pipeline; generated detector-aligned crops for ReID training/inference.</li>
+              <li>Adapted a pose-guided ReID approach to sturgeon.</li>
+            </ul>
+          </article>
+
         </div>
       </section>
 
       <!-- PROJECTS -->
-      <section class="reveal">
-        <h2>Projects</h2>
+      <section class="block reveal">
+        <div class="block-label"><span class="num">03</span><h2>Projects</h2></div>
+        <div class="block-body">
 
-        <div class="card">
-          <div class="row-top">
-            <h3>Online Multiplayer Boggle Game</h3>
-            <span class="meta">Feb 2026 – May 2026</span>
-          </div>
-          <p class="subtitle">CS 506 team project · React / Spring Boot / MySQL · UW-Madison</p>
-          <ul class="bullets">
-            <li>An online, multiplayer version of the board game Boggle, with matchmaking lobbies, timed rounds, and user accounts with score tracking.</li>
-            <li>Built the multiplayer gameplay on the backend in Java and Spring Boot, including joining and managing game lobbies, running live timed rounds, server-side events that keep each player's game state consistent, and tallying players' final scores.</li>
-            <li>Set up the backend foundation that stores user accounts and scores, runs the server in a container, and connects the web app to the backend.</li>
-            <li>Wrote automated JUnit tests, including MVC tests, run through a CI/CD pipeline, helping the team reach over 80% code coverage.</li>
-            <li>Implemented frontend features like the game over results screen, a lobby full pop-up window, and the game rules page.</li>
-            <li>Acted as product owner, setting the team's coding standards and presenting the sprint backlog.</li>
-          </ul>
-        </div>
+          <article class="entry">
+            <p class="entry-date">Feb 2026 – May 2026</p>
+            <h3 class="entry-title">Online Multiplayer Boggle Game</h3>
+            <p class="entry-org">CS 506 team project <span class="sep">·</span> <span class="entry-note">React · Spring Boot · MySQL · UW–Madison</span></p>
+            <ul class="bullets">
+              <li class="lead-line">An online, multiplayer version of the board game Boggle, with matchmaking lobbies, timed rounds, and user accounts with score tracking.</li>
+              <li>Built the multiplayer gameplay on the backend in Java and Spring Boot, including joining and managing game lobbies, running live timed rounds, server-side events that keep each player's game state consistent, and tallying players' final scores.</li>
+              <li>Set up the backend foundation that stores user accounts and scores, runs the server in a container, and connects the web app to the backend.</li>
+              <li>Wrote automated JUnit tests, including MVC tests, run through a CI/CD pipeline, helping the team reach over 80% code coverage.</li>
+              <li>Implemented frontend features like the game over results screen, a lobby full pop-up window, and the game rules page.</li>
+              <li>Acted as product owner, setting the team's coding standards and presenting the sprint backlog.</li>
+            </ul>
+          </article>
 
-        <div class="card">
-          <div class="row-top">
-            <h3>Partially Observable Markov Game Solver</h3>
-            <span class="meta">Jan 2025 – May 2025</span>
-          </div>
-          <p class="subtitle">Directed study with Dr. Young Wu, UW-Madison</p>
-          <ul class="bullets">
-            <li>Implemented Nash Q-learning and deep Q-learning in Python and PyTorch to compute Nash equilibria in partially observable Markov games.</li>
-            <li>Analyzed algorithmic solvability across game scenarios; identified solvable cases and diagnosed causes of non-convergence.</li>
-          </ul>
-        </div>
+          <article class="entry">
+            <p class="entry-date">Jan 2025 – May 2025</p>
+            <h3 class="entry-title">Partially Observable Markov Game Solver</h3>
+            <p class="entry-org">Directed study with Dr. Young Wu <span class="sep">·</span> <span class="entry-note">UW–Madison</span></p>
+            <ul class="bullets">
+              <li>Implemented Nash Q-learning and deep Q-learning in Python and PyTorch to compute Nash equilibria in partially observable Markov games.</li>
+              <li>Analyzed algorithmic solvability across game scenarios; identified solvable cases and diagnosed causes of non-convergence.</li>
+            </ul>
+          </article>
 
-        <div class="card">
-          <div class="row-top">
-            <h3>Intersection Detection for Autonomous Driving</h3>
-            <span class="meta">Jan 2025 – May 2025</span>
-          </div>
-          <p class="subtitle">SAE-sponsored competition</p>
-          <ul class="bullets">
-            <li>Led vehicle-to-intersection distance estimation for the team.</li>
-            <li>Reviewed existing detection methods, training workflows, and pre-trained models, evaluating performance and computational requirements.</li>
-            <li>Implemented OpenCV filters, edge detection, and line detection in Python to estimate the intersection location.</li>
-          </ul>
+          <article class="entry">
+            <p class="entry-date">Jan 2025 – May 2025</p>
+            <h3 class="entry-title">Intersection Detection for Autonomous Driving</h3>
+            <p class="entry-org">SAE-sponsored competition</p>
+            <ul class="bullets">
+              <li>Led vehicle-to-intersection distance estimation for the team.</li>
+              <li>Reviewed existing detection methods, training workflows, and pre-trained models, evaluating performance and computational requirements.</li>
+              <li>Implemented OpenCV filters, edge detection, and line detection in Python to estimate the intersection location.</li>
+            </ul>
+          </article>
+
         </div>
       </section>
+
+      <!-- SKILLS -->
+      <section class="block reveal">
+        <div class="block-label"><span class="num">04</span><h2>Skills</h2></div>
+        <div class="block-body">
+          <div class="skill-row">
+            <span class="skill-key">Languages</span>
+            <span class="skill-val">Java (4y)<span class="sep">/</span>Python (4y)<span class="sep">/</span>C++ (5y)<span class="sep">/</span>C (5y)<span class="sep">/</span>C# (1y)</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-key">Systems</span>
+            <span class="skill-val">Git<span class="sep">/</span>Docker<span class="sep">/</span>Linux<span class="sep">/</span>Bash</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-key">Web / Data</span>
+            <span class="skill-val">Spring Boot<span class="sep">/</span>React<span class="sep">/</span>SQL</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-key">ML / CV</span>
+            <span class="skill-val">PyTorch<span class="sep">/</span>OpenCV<span class="sep">/</span>YOLO (Ultralytics)</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-key">Simulation</span>
+            <span class="skill-val">Gazebo<span class="sep">/</span>Unity</span>
+          </div>
+        </div>
+      </section>
+
     </main>
 
     <footer>
-      © <span id="year"></span> Jason Li · Built with plain HTML &amp; CSS · Hosted on GitHub Pages
+      <span>Jason Li</span>
+      <span>Madison, Wisconsin · <span id="year"></span></span>
     </footer>
 
   </div>
 
   <script>
+    document.body.classList.add("load");
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Reveal-on-scroll
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); } });
     }, { threshold: 0.08 });
