@@ -1,12 +1,344 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Jason Li</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jason Li — Computer Science @ UW-Madison</title>
+  <meta name="description" content="Jason Li — Computer Science student at UW-Madison. Research and software engineering in machine learning, computer vision, and robotics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-elev: #161b22;
+      --border: #21262d;
+      --text: #e6edf3;
+      --text-dim: #8b949e;
+      --accent: #58a6ff;
+      --accent-soft: rgba(88, 166, 255, 0.12);
+      --tag-bg: #1f2630;
+      --radius: 12px;
+      --max: 820px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f6f8fa;
+        --bg-elev: #ffffff;
+        --border: #d0d7de;
+        --text: #1f2328;
+        --text-dim: #59636e;
+        --accent: #0969da;
+        --accent-soft: rgba(9, 105, 218, 0.08);
+        --tag-bg: #eaeef2;
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px 96px;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      padding: 72px 0 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .tagline {
+      margin-top: 10px;
+      font-size: 1.15rem;
+      color: var(--text-dim);
+    }
+    .contact {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      font-size: 0.95rem;
+    }
+    .contact a, .contact span {
+      color: var(--text-dim);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .contact a:hover { color: var(--accent); }
+
+    .actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+    }
+    .btn:hover { text-decoration: none; transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn-primary:hover { filter: brightness(1.08); }
+    .btn-ghost:hover { border-color: var(--accent); background: var(--accent-soft); }
+
+    /* ---------- Sections ---------- */
+    section { padding-top: 48px; }
+    h2 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      margin-bottom: 16px;
+    }
+
+    .row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px 16px;
+    }
+    .row-top h3 { font-size: 1.1rem; font-weight: 700; }
+    .meta { color: var(--text-dim); font-size: 0.9rem; white-space: nowrap; }
+    .subtitle { color: var(--text-dim); font-style: italic; margin-bottom: 12px; font-size: 0.95rem; }
+
+    ul.bullets { list-style: none; margin-top: 4px; }
+    ul.bullets li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    ul.bullets li::before {
+      content: "";
+      position: absolute;
+      left: 4px; top: 11px;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* ---------- Skills ---------- */
+    .skill-group { margin-bottom: 16px; }
+    .skill-group:last-child { margin-bottom: 0; }
+    .skill-label { font-weight: 600; color: var(--text-dim); font-size: 0.85rem; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 13px;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .coursework { color: var(--text-dim); font-size: 0.95rem; margin-top: 6px; }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    /* fade-in */
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Jason Li</h1>
-  <p>Computer Science student at UW-Madison.</p>
-  <br>
-  <p>This page is currently incomplete.</p>
+  <div class="wrap">
+
+    <header>
+      <h1>Jason Li</h1>
+      <p class="tagline">Computer Science student at UW-Madison — machine learning, computer vision &amp; robotics.</p>
+
+      <div class="contact">
+        <a href="mailto:jasonjisenli@gmail.com">✉ jasonjisenli@gmail.com</a>
+        <span>📍 Madison, WI</span>
+        <a href="https://github.com/jason-jisen-li" target="_blank" rel="noopener">⌨ GitHub</a>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="Jason%20Li_Resume_AI.pdf" target="_blank" rel="noopener">Download Résumé (PDF)</a>
+        <a class="btn btn-ghost" href="mailto:jasonjisenli@gmail.com">Get in touch</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- EDUCATION -->
+      <section class="reveal">
+        <h2>Education</h2>
+        <div class="card">
+          <div class="row-top">
+            <h3>University of Wisconsin-Madison</h3>
+            <span class="meta">Expected May 2027</span>
+          </div>
+          <p class="subtitle">B.S. in Computer Science · GPA 4.0 / 4.0 · Madison, WI</p>
+          <p class="coursework">
+            <strong>Relevant coursework:</strong> Artificial Intelligence · Learning Theory · Linear Algebra ·
+            Theory of Probability · Linear Optimization · Algorithms · Operating Systems ·
+            Object-Oriented Programming and Data Structures
+          </p>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="reveal">
+        <h2>Skills</h2>
+        <div class="card">
+          <div class="skill-group">
+            <div class="skill-label">Languages</div>
+            <div class="tags">
+              <span class="tag">Java · 4y</span>
+              <span class="tag">Python · 4y</span>
+              <span class="tag">C++ · 5y</span>
+              <span class="tag">C · 5y</span>
+              <span class="tag">C# · 1y</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-label">Systems</div>
+            <div class="tags">
+              <span class="tag">Git</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Linux</span>
+              <span class="tag">Bash</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-label">ML / CV</div>
+            <div class="tags">
+              <span class="tag">PyTorch</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">YOLO (Ultralytics)</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-label">Simulation</div>
+            <div class="tags">
+              <span class="tag">Gazebo</span>
+              <span class="tag">Unity</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="reveal">
+        <h2>Experience</h2>
+
+        <div class="card">
+          <div class="row-top">
+            <h3>Beijing Academy of Agriculture and Forestry Sciences</h3>
+            <span class="meta">May 2024 – May 2025</span>
+          </div>
+          <p class="subtitle">Research Assistant</p>
+          <ul class="bullets">
+            <li>Assisted in developing deep learning algorithms for sturgeon re-identification (ReID) in Python &amp; PyTorch.</li>
+            <li>Reviewed fish detection and individual identification (ReID) methods.</li>
+            <li>Acquired, processed, and curated a training and validation dataset of 6,000 high-quality sturgeon images, designing the image-acquisition protocol and labeling guidelines.</li>
+            <li>Fine-tuned and integrated YOLOv8 as the detection module in the pipeline; generated detector-aligned crops for ReID training/inference.</li>
+            <li>Adapted a pose-guided ReID approach to sturgeon.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="row-top">
+            <h3>Bohr Systems</h3>
+            <span class="meta">May 2025 – Aug 2025</span>
+          </div>
+          <p class="subtitle">Software Engineering Intern</p>
+          <ul class="bullets">
+            <li>Designed a camera-only visual localization pipeline in Python for quad-wing UAVs in GPS-denied environments; defined system interfaces and data flows.</li>
+            <li>Compared visual-localization methods on requirements and trade-offs; recommended ORB (adopted).</li>
+            <li>Performed a thorough code-level review of the OpenCV ORB implementation, covering all major algorithmic steps and performance optimizations.</li>
+            <li>Implemented an end-to-end ORB localization prototype: keypoint extraction, descriptor matching, geometric verification (RANSAC), and map-tile search.</li>
+            <li>Built Gazebo simulation experiments; scripted camera streams and test harnesses to evaluate accuracy.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="reveal">
+        <h2>Projects</h2>
+
+        <div class="card">
+          <div class="row-top">
+            <h3>Partially Observable Markov Game Solver</h3>
+            <span class="meta">Jan 2025 – May 2025</span>
+          </div>
+          <p class="subtitle">Directed study with Dr. Young Wu, UW-Madison</p>
+          <ul class="bullets">
+            <li>Implemented Nash Q-learning and deep Q-learning in Python and PyTorch to compute Nash equilibria in partially observable Markov games.</li>
+            <li>Analyzed algorithmic solvability across game scenarios; identified solvable cases and diagnosed causes of non-convergence.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="row-top">
+            <h3>Intersection Detection for Autonomous Driving</h3>
+            <span class="meta">Jan 2025 – May 2025</span>
+          </div>
+          <p class="subtitle">SAE-sponsored competition</p>
+          <ul class="bullets">
+            <li>Led vehicle-to-intersection distance estimation for the team.</li>
+            <li>Reviewed existing detection methods, training workflows, and pre-trained models, evaluating performance and computational requirements.</li>
+            <li>Implemented OpenCV filters, edge detection, and line detection in Python to estimate the intersection location.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Jason Li · Built with plain HTML &amp; CSS · Hosted on GitHub Pages
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Reveal-on-scroll
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
+  </script>
 </body>
 </html>

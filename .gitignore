@@ -1,0 +1,14 @@
+# Claude Code / AI assistant files
+CLAUDE.md
+.claude/
+.claude.json
+.mcp.json
+
+# PDF files
+*.pdf
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
